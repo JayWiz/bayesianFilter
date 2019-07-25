@@ -1,7 +1,7 @@
 #ifndef MOTIONMODEL_H
 #define MOTIONMODEL_H
 
-#include <eigen3/Eigen/Dense>
+#include "Eigen/Dense"
 #include "gaussian.h"
 
 

@@ -1,7 +1,7 @@
 #ifndef KALMAN_H
 #define KALMAN_H
 
-#include <eigen3/Eigen/Dense>
+#include "Eigen/Dense"
 
 class KalmanFilter {
     public:

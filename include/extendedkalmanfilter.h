@@ -1,7 +1,7 @@
 #ifndef EXTENDEDKALMANFILTER_H
 #define EXTENDEDKALMANFILTER_H
 
-#include <eigen3/Eigen/Dense>
+#include "Eigen/Dense"
 
 class ExtendedKalmanFilter {
     public:

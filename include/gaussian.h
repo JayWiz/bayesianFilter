@@ -1,7 +1,7 @@
 #ifndef GAUSSIAN_H
 #define GAUSSIAN_H
 
-#include <eigen3/Eigen/Dense>
+#include "Eigen/Dense"
 
 class Gaussian {
     public:

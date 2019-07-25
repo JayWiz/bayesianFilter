@@ -1,6 +1,6 @@
 #include <iostream>
 #include "motionmodel.h"
-#include <eigen3/Eigen/Dense>
+#include "Eigen/Dense"
 
 int main(void) {
     Eigen::Vector3f state1(3);
