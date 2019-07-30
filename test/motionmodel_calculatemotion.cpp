@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "motionmodel.h"
+#include <iostream>
 
 TEST(motionmodel, calculatemotion) {
     MotionModel m1;
@@ -19,6 +20,8 @@ TEST(motionmodel, calculatemotion) {
     Gaussian gaus2 = m1.CalculateMotion(odom1, gaus1, qno1);
 
     Gaussian testGaus2 = Gaussian(cov2, mu2);
+    std::cout << gaus2.GetCovariance() << std::endl;
+    std::cout << testGaus2.GetCovariance() << std::endl;
 
     ASSERT_EQ(gaus2.GetCovariance(), testGaus2.GetCovariance());
 }
