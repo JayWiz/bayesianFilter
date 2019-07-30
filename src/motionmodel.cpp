@@ -30,8 +30,8 @@ Gaussian MotionModel::CalculateMotion(Eigen::Vector3f p_odometry, Gaussian p_gau
                     theta + delta_rot_1 + delta_rot_2;
 
     Eigen::Matrix3f G = Eigen::Matrix3f();
-    G <<    1, 0, -delta_trans * std::sin((theta + delta_rot_1) / 180 * PI),
-            0, 1, +delta_trans * std::cos((theta + delta_rot_1) / 180 * PI),
+    G <<    1, 0, -delta_trans * std::sin((theta + delta_rot_1)),
+            0, 1, +delta_trans * std::cos((theta + delta_rot_1)),
             0, 0, 1;
 
     // std::cout << G << std::endl;
