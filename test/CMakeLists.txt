@@ -1,6 +1,7 @@
 add_executable(
     unit_tests
-    motionmodel_calculatemotion.cpp
+    tests_motionmodel.cpp
+    tests_gaussian.cpp
     )
 
 target_link_libraries(
