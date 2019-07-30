@@ -20,4 +20,4 @@ script:
 
 after_success:
   # - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*" 
-  - coveralls --root .. -e build/external -e build/googletest -e src/Eigen
+  - coveralls --root .. -e build/external -e build/googletest -e src/Eigen -e build/CMakeFiles
