@@ -1,41 +1,25 @@
-# cmake_minimum_required(VERSION 2.8)
-# 
-# project(bayesianFilter)
-# 
-# include_directories(include)
-# 
-# file(GLOB SOURCES "src/*.cpp")
-# 
-# add_executable(outz ${SOURCES})
-# 
-# # unit testing
-# enable_testing()
-# 
-# find_package(Boost REQUIRED COMPONENTS unit_test_framework)
-# 
-# include_directories(${Boost_INCLUDE_DIR})
-# include_directories(include)
-# 
-# add_executable(testMotionModel test/test_motionmodel.cpp)
-# 
-# target_link_libraries(testMotionModel ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 
-cmake_minimum_required(VERSION 3.5)
-project(bayesianFilter)
+project(bayesianFilter CXX)
 
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
+# place binaries and libraries according to GNU standards
+include(GNUInstallDirs)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
 
-file(GLOB_RECURSE INC_FILES /include/*.h)
-file(GLOB_RECURSE SRC_FILES /src/*.cpp)
+# we use this to get code coverage
+if(CMAKE_CXX_COMPILER_ID MATCHES GNU)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
+endif()
 
-find_package(Boost COMPONENTS filesystem system unit_test_framework REQUIRED)
+add_subdirectory(src)
 
-# add_subdirectory(test)
+include(cmake/googletest.cmake)
+fetch_googletest(
+    ${PROJECT_SOURCE_DIR}/cmake
+    ${PROJECT_BINARY_DIR}/googletest
+    )
 
-include_directories(${Boost_INCLUDE_DIRS})
-include_directories(include)
-
-set(SOURCE_FILES src/main.cpp ${INC_FILES} ${SRC_FILES})
-add_executable(outz ${SOURCE_FILES})
-target_link_libraries(outz ${BOOST_LIBRARIES})
+enable_testing()
+add_subdirectory(test)
